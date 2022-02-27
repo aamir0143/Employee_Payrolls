@@ -9,7 +9,9 @@ Salary float,
 StartDate date
 );
 ----------UC3 Create-add(C)-------------
-INSERT INTO Employee_Payroll (Name, Salary, StartDate) VALUES ('Salman', 25677.77, CAST('2000-01-01' as Date));
+INSERT INTO Employee_Payroll (Name, Salary, StartDate, Gender)
+ VALUES ('Seeta', 44558.55, CAST('2013-05-07' as Date), 'F'),
+		 ('Geeta', 33228.66, CAST('2016-08-05' as Date), 'F');
 INSERT INTO Employee_Payroll (Name, Salary, StartDate) VALUES ('Rehan', 25688.88, CAST('2001-02-02' as Date));
 INSERT INTO Employee_Payroll (Name, Salary, StartDate) VALUES ('Kajol', 284965.55, CAST('2008-05-07' as Date));
 INSERT INTO Employee_Payroll (Name, StartDate) VALUES ('Dhoni', getdate());
@@ -23,6 +25,11 @@ select salary,Name from employee_payroll where startdate between CAST('2020-01-0
 ALTER TABLE Employee_Payroll ADD Gender varchar(2);
 
 update employee_payroll set Gender = 'M' WHERE Id IN (1,2,7,8);
-update employee_payroll set Gender = 'F' WHERE Id IN (9);
-
-
+update employee_payroll set Gender = 'F' WHERE Id IN (9,10,11);
+----------UC7 Find Sum Avg Min Max And Number of Male Or Female employees----
+select sum(Salary) as TotalSalary,Gender from employee_payroll group by Gender;
+select avg(Salary) as avgSalary,Gender from employee_payroll group by Gender;
+select Min(Salary) as MinSalary,Gender from employee_payroll group by Gender;
+select Max(Salary) as MaxSalary,Gender from employee_payroll group by Gender;
+select Count(Gender) as NoOfEmployees,Gender from employee_payroll group by Gender;
+select * from Employee_Payroll;
