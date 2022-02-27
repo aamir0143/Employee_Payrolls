@@ -38,3 +38,6 @@ ALTER TABLE Employee_Payroll ADD Phone bigint;
 ALTER TABLE Employee_Payroll ADD Address varchar(300) not null default 'Patna';
 ALTER TABLE Employee_Payroll ADD Department varchar(300) not null default 'IT';
 Exec sp_rename 'Employee_Payroll.Department','DepDummy','COLUMN';
+----------UC9 Extend employee_payroll table to have basic pay-----------------
+Exec sp_rename 'Employee_Payroll.Salary','BasicPay','COLUMN';
+ALTER TABLE Employee_Payroll ADD Deductions float,TaxablePay float,IncomeTax float,NetPay float;
