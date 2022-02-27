@@ -8,3 +8,6 @@ Name varchar(200),
 Salary float,
 StartDate date
 );
+----------UC3 Create-add(C)-------------
+INSERT INTO Employee_Payroll (Name, Salary, StartDate) VALUES ('Aamir', 25677.77, getdate());
+INSERT INTO Employee_Payroll (Name, StartDate) VALUES ('Dhoni', getdate());
