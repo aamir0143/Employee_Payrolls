@@ -24,7 +24,7 @@ select salary,Name from employee_payroll where startdate between CAST('2020-01-0
 
 ALTER TABLE Employee_Payroll ADD Gender varchar(2);
 
-update employee_payroll set Gender = 'M' WHERE Id IN (1,2,7,8);
+update employee_payroll set DepDummy = 'Finance' WHERE Id in(1,2,7,8,9,10,11);
 update employee_payroll set Gender = 'F' WHERE Id IN (9,10,11);
 ----------UC7 Find Sum Avg Min Max And Number of Male Or Female employees----
 select sum(Salary) as TotalSalary,Gender from employee_payroll group by Gender;
@@ -33,3 +33,8 @@ select Min(Salary) as MinSalary,Gender from employee_payroll group by Gender;
 select Max(Salary) as MaxSalary,Gender from employee_payroll group by Gender;
 select Count(Gender) as NoOfEmployees,Gender from employee_payroll group by Gender;
 select * from Employee_Payroll;
+----------UC8 Store Employee Informatin Like Phone,Address And Departments----
+ALTER TABLE Employee_Payroll ADD Phone bigint;
+ALTER TABLE Employee_Payroll ADD Address varchar(300) not null default 'Patna';
+ALTER TABLE Employee_Payroll ADD Department varchar(300) not null default 'IT';
+Exec sp_rename 'Employee_Payroll.Department','DepDummy','COLUMN';
