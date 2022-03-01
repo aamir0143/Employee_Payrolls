@@ -18,8 +18,8 @@ INSERT INTO Employee_Payroll (Name, StartDate) VALUES ('Dhoni', getdate());
 ----------UC4 Select-Read(R)------------
 select * from Employee_Payroll;
 ----------UC5 Retrieve Salary Data For A Particular Employee----------
-select salary from employee_payroll where Name= 'Salman';
-select salary,Name from employee_payroll where startdate between CAST('2020-01-01' as Date) and getdate();
+select Salary from employee_payroll where Name= 'Salman';
+select Salary,Name from employee_payroll where startdate between CAST('2020-01-01' as Date) and getdate();
 ----------UC6 Add Gender To Employee Payroll Table And Updated Row--------
 
 ALTER TABLE Employee_Payroll ADD Gender varchar(2);
@@ -37,7 +37,16 @@ select * from Employee_Payroll;
 ALTER TABLE Employee_Payroll ADD Phone bigint;
 ALTER TABLE Employee_Payroll ADD Address varchar(300) not null default 'Patna';
 ALTER TABLE Employee_Payroll ADD Department varchar(300) not null default 'IT';
-Exec sp_rename 'Employee_Payroll.Department','DepDummy','COLUMN';
+Exec sp_rename 'Employee_Payroll.Country','Address,'COLUMN';
 ----------UC9 Extend employee_payroll table to have basic pay-----------------
 Exec sp_rename 'Employee_Payroll.Salary','BasicPay','COLUMN';
 ALTER TABLE Employee_Payroll ADD Deductions float,TaxablePay float,IncomeTax float,NetPay float;
+----------UC10 Make Terissa as part of sales and marketing department----------
+
+insert into employee_payroll values
+('Terissa',700000.0,'2020-08-14','F','8734586245','Sales','india','HR',100.0,12000.0,2000.0,1233.0,'Mubai')
+
+insert into employee_payroll values
+('Terissa',500000.0,'2020-08-14','F','8723586245','Marketing','india','HR',100.0,12000.0,2000.0,1233.0,'Mubai')
+
+SELECT * FROM Employee_Payroll WHERE Name = 'Terissa';
